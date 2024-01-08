@@ -9,7 +9,7 @@ docker-compose up -d
 ```bash
 http://localhost:3000
 ```
-<image width="340" src="images/1.png"/>
+<image src="images/1.png"/>
 
 ### 新建git仓库并提交
 ```bash
@@ -26,16 +26,16 @@ git push -u origin main
 ```bash
 http://localhost:8088
 ```
-<image width="340" src="images/2.png"/>
+<image src="images/2.png"/>
 
 
 ### 修改webhook 如果用域名部署的可以跳过此步骤
 
-<image width="340" src="images/3.png"/>
+<image src="images/3.png"/>
 
 
 ### 设置ssh/docker等私密信息 对应.drone.yml的from_secret
-<image width="340" src="images/4.png"/>
+<image src="images/4.png"/>
 
 
 ### 新建docker镜像空间，此处用的阿里云
@@ -69,12 +69,12 @@ services:
 ├─.notify.tpl                  通知模版
 ├─main.go                      gin示例
 ```
-<image width="340" src="images/5.png"/>
+<image src="images/5.png"/>
 
 
 ### 部署流程
 
-<image width="340" src="images/6.png"/>
+<image src="images/6.png"/>
 
 
 ### 通知
@@ -88,4 +88,4 @@ services:
 curl localhost:8090/ping
 ```
 
-<image width="340" src="images/8.png"/>
+<image src="images/8.png"/>
