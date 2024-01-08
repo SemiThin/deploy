@@ -1,0 +1,11 @@
+FROM alpine:latest
+
+WORKDIR /app
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
+#解决docker alpine /bin/sh: ./main: not found
+RUN apk add --no-cache libc6-compat
+
+
+#docker build -t alpine:libc6 -f Dockerfile.libc6 .

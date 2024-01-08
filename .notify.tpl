@@ -1,0 +1,11 @@
+### <font color=[TPL_STATUS_COLOR]> [TPL_REPO_SHORT_NAME] build [TPL_BUILD_STATUS] </font>
+
+![]([TPL_STATUS_PIC])
+
+<font color=[TPL_STATUS_COLOR]>[TPL_COMMIT_MSG]</font>
+
+[[TPL_COMMIT_SHA]]([TPL_COMMIT_LINK])
+
+[[TPL_AUTHOR_NAME]([TPL_AUTHOR_EMAIL])](mailto:[TPL_AUTHOR_EMAIL])
+
+[Click To The Build Detail Page [TPL_STATUS_EMOTICON]]([TPL_BUILD_LINK])

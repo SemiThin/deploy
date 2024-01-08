@@ -1,0 +1,66 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: build
+    image: golang
+    pull: if-not-exists
+    environment:
+      GOPROXY: "https://goproxy.cn,direct"
+    volumes:   #缓存go mod&pkg,可以大幅度提高速度，避免每次都下载         
+      - name: pkgdeps
+        path: /go/pkg
+    commands:
+      - CGO_ENABLED=0 go build -o demo main.go
+
+  - name: publish
+    image: plugins/docker
+    pull: if-not-exists
+    settings:
+      registry:
+        from_secret: docker_registry #registry.cn-shenzhen.aliyuncs.com
+      repo:
+        from_secret: docker_repo     #registry.cn-shenzhen.aliyuncs.com/semithin/demo
+      username:
+        from_secret: docker_user
+      password:
+        from_secret: docker_password
+      use_cache: true
+      purge: false
+      tags:
+        - latest
+        #- ${DRONE_BRANCH} #可以根据不同的分支名称部署不同的环境
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    pull: if-not-exists
+    settings:
+      host:
+        from_secret: ssh_ip
+      username:
+        from_secret: ssh_user
+      #password:
+        #from_secret: ssh_password
+      key:
+        from_secret: ssh_key
+      port: 22
+      script:
+        #- docker login --username ${DUSER} --password ${DPASSWORD} registry.cn-shenzhen.aliyuncs.com  # err: Error: Cannot perform an interactive login from a non TTY device 在服务器手动首次登录算了，懒得折腾了
+        - cd /home/wwwroot/demo
+        - docker-compose pull && docker-compose up -d --force-recreate
+  
+  - name: notify
+    image: lddsb/drone-dingtalk-message #https://github.com/lddsb/drone-dingtalk-message/blob/master/README_ZH.md
+    pull: if-not-exists
+    settings:
+      type: markdown
+      token:
+        from_secret: rebot_dd_token
+      secret:
+        from_secret: rebot_dd_secret
+      debug: true 
+      tpl: ./.notify.tpl
+    when:
+      status: [failure, success]
+
