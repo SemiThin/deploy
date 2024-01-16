@@ -1,9 +1,9 @@
 # drone
 
-## Type
+### 代码托管平台
 
-- [Gogs](README.MD)
-- [Gitea](README_GITEA.MD)
+- [Gogs](README.md)
+- [Gitea](README_GITEA.md)
 
 ---
 
@@ -16,7 +16,7 @@ docker-compose up -d
 ### 安装gogs 数据库自行选择 这里演示用的是sqlLite3
 ```bash
 http://localhost:3000
-```
+```[README_GITEA.md](README_GITEA.md)
 <image src="images/1.png"/>
 
 ### 新建git仓库并提交

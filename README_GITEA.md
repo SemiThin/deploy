@@ -1,4 +1,12 @@
 # gitea
+
+### 代码托管平台
+
+- [Gogs](README.md)
+- [Gitea](README_GITEA.md)
+
+---
+
 ### 启动 gitea 服务
 
 ```bash
