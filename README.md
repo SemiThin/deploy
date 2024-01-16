@@ -1,4 +1,12 @@
 # drone
+
+## Type
+
+- [Gogs](README.MD)
+- [Gitea](README_GITEA.MD)
+
+---
+
 ### 启动 gogs、drone-server、drone-runner 服务
 
 ```bash
